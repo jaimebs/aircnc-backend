@@ -7,6 +7,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParse.urlencoded({ extended: true }));
 app.use(bodyParse.json());
-app.use(require('./router'));
+app.use(require('./routes'));
 
 app.listen(3333);
