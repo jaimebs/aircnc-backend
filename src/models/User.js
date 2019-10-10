@@ -24,7 +24,7 @@ userSchema.statics.compare = async (formPass, userPass) => bcrypt.compare(formPa
 
 userSchema.statics.token = user_id =>
   jwt.sign({ id: user_id }, process.env.SECRET_KEY_TOKEN, {
-    // expiresIn: 100 // expira em...
+    expiresIn: 43200, // Time in seconds (12 hours).
   });
 
 module.exports = mongoose.model('User', userSchema);
