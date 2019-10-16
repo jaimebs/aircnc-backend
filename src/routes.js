@@ -14,7 +14,7 @@ const bookingController = require('./controllers/booking');
 
 router.get('/users', auth, userController.index);
 router.post('/users', userController.store);
-router.get('/users/:id', auth, userController.search);
+router.get('/users/:id', auth, userController.show);
 router.put('/users/:id', userController.update);
 router.delete('/users/:id', userController.remove);
 

@@ -12,7 +12,7 @@ module.exports = {
       return res.status(400).json(error);
     }
   },
-  async search(req, res) {
+  async show(req, res) {
     try {
       const spot = await Spot.findById(req.params.id);
       return res.status(200).json(spot);
