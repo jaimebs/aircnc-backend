@@ -1,10 +1,13 @@
 const Spot = require('../models/spot');
+const User = require('../models/user');
 
 module.exports = {
   async index(req, res) {
     try {
-      const users = await Spot.find();
-      return res.status(200).json(users);
+      const { tech } = req.query;
+
+      const spot = await Spot.find({ techs: tech });
+      return res.status(200).json(spot);
     } catch (error) {
       return res.status(400).json(error);
     }
@@ -22,6 +25,10 @@ module.exports = {
       const { filename } = req.file;
       const { company, techs, price } = req.body;
       const { user_id } = req.headers;
+
+      const user = await User.findById(user_id);
+
+      if (!user) return res.status(404).json({ error: 'Usuário não existe.' });
 
       const spot = await Spot.create({
         user: user_id,
